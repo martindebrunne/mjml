@@ -9,7 +9,8 @@
     "dist": "gulp dist && gulp dist:min",
     "lint": "eslint src test",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "testfile": "babel-node test.js"
   },
   "engine": {
     "node": ">= 4.2.0"

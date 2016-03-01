@@ -3,15 +3,21 @@ import { fromJS } from 'immutable'
 import MJMLElementsCollection from '../MJMLElementsCollection'
 
 export const parseInstance = instance => {
-  const parseNode = node => ({
+  const parseNode = node => {
 
-    // copy all existing props, applying defaults
-    ..._.defaultsDeep(node, MJMLElementsCollection[node.tagName.substr(3)].defaultMJMLDefinition),
+    const element = node.tagName === 'mjml' ?
+      node.tagName : node.tagName.substr(3)
+  
+    return {
 
-    // do same to children
-    children: (node.children || []).map(parseNode)
+      // copy all existing props, applying defaults
+      ..._.defaultsDeep(node, MJMLElementsCollection[element].defaultMJMLDefinition),
 
-  })
+      // do same to children
+      children: (node.children || []).map(parseNode)
+
+    }
+  }
 
   return fromJS(parseNode(instance))
 }

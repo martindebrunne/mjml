@@ -228,7 +228,9 @@ const render = ({ mjml, options }) => {
 
   if (mjml) {
     debug('Create root React element')
-    const rootElemComponent = React.createElement(MJMLElementsCollection[mjml.tagName.substr(3)], { mjml: parseInstance(mjml) })
+    const tagName = mjml.tagName === 'mjml' ?
+      'mjml' : mjml.tagName.substr(3)
+    const rootElemComponent = React.createElement(MJMLElementsCollection[tagName], { mjml: parseInstance(mjml) })
 
     debug('Render to static markup')
     content = ReactDOMServer.renderToStaticMarkup(rootElemComponent)
@@ -237,7 +239,9 @@ const render = ({ mjml, options }) => {
   }
 
   debug('React rendering done. Continue with special overrides.')
-  let $ = dom.parseHTML(container(options.title, content))
+  let $ = options.raw ?
+    dom.parseHTML(content) :
+    dom.parseHTML(container(options.title, content))
 
   $('.mj-raw').each(function () {
     $(this).replaceWith($(this).html())

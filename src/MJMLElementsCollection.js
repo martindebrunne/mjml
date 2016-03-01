@@ -9,6 +9,7 @@ import Raw from './components/Raw'
 import Section from './components/Section'
 import Social from './components/Social'
 import Text from './components/Text'
+import Mjml from './components/Mjml'
 
 const MJMLStandardElements = {
   'body': Body,
@@ -21,7 +22,8 @@ const MJMLStandardElements = {
   'raw': Raw,
   'section': Section,
   'social': Social,
-  'text': Text
+  'text': Text,
+  'mjml': Mjml
 }
 
 export const endingTags = ['mj-text', 'mj-html', 'mj-button', 'mj-list', 'mj-raw']

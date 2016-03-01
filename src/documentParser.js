@@ -46,20 +46,20 @@ const mjmlElementParser = elem => {
  *   - mjml: a json representation of the mjml
  */
 const documentParser = content => {
-  let body
+  let root, $
 
   try {
-    const $ = dom.parseXML(safeEndingTags(content))
-    body = $('mj-body')
+    $ = dom.parseXML(safeEndingTags(content))
+    root = $('mjml')
   } catch (e) {
     throw new ParseError('Error while parsing the file')
   }
 
-  if (!body) {
-    throw new EmptyMJMLError('No mj-body found in the file')
+  if (!root.length) {
+    return documentParser(`<mjml>${dom.getHTML($)}</mjml>`)
   }
 
-  return mjmlElementParser(body.get(0))
+  return mjmlElementParser(root.get(0))
 }
 
 export default documentParser
