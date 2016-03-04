@@ -11,6 +11,7 @@ import Raw from './components/Raw'
 import Section from './components/Section'
 import Social from './components/Social'
 import Text from './components/Text'
+import Rating from './components/Rating'
 
 const MJMLStandardElements = {
   'body': Body,
@@ -21,6 +22,7 @@ const MJMLStandardElements = {
   'image': Image,
   'invoice-item': InvoiceItem,
   'invoice': Invoice,
+  'rating': Rating,
   'list': List,
   'raw': Raw,
   'section': Section,
@@ -28,7 +30,7 @@ const MJMLStandardElements = {
   'text': Text
 }
 
-export const endingTags = ['mj-text', 'mj-html', 'mj-button', 'mj-list', 'mj-raw', 'mj-table', 'mj-invoice-item']
+export const endingTags = ['mj-text', 'mj-html', 'mj-button', 'mj-list', 'mj-raw', 'mj-table', 'mj-invoice-item', 'mj-rating']
 export const unsafeTags = ['mj-raw']
 
 export const registerElement = (tagName, element, options = {}) => {
@@ -37,6 +39,10 @@ export const registerElement = (tagName, element, options = {}) => {
   if (options.endingTag) {
     endingTags.push(`mj-${tagName}`)
   }
+
+  console.log('register')
+  console.log(endingTags)
+  console.log(MJMLStandardElements)
 
   if (options.unsafeTags) {
     unsafeTags.push(`mj-${tagName}`)
