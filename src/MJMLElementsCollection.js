@@ -12,6 +12,8 @@ import Section from './components/Section'
 import Social from './components/Social'
 import Text from './components/Text'
 import Rating from './components/Rating'
+import Form from './components/Form'
+import Input from './components/Input'
 
 const MJMLStandardElements = {
   'body': Body,
@@ -27,10 +29,12 @@ const MJMLStandardElements = {
   'raw': Raw,
   'section': Section,
   'social': Social,
-  'text': Text
+  'text': Text,
+  'form': Form,
+  'input': Input
 }
 
-export const endingTags = ['mj-text', 'mj-html', 'mj-button', 'mj-list', 'mj-raw', 'mj-table', 'mj-invoice-item', 'mj-rating']
+export const endingTags = ['mj-text', 'mj-html', 'mj-button', 'mj-list', 'mj-raw', 'mj-table', 'mj-invoice-item', 'mj-rating', 'mj-input']
 export const unsafeTags = ['mj-raw']
 
 export const registerElement = (tagName, element, options = {}) => {
